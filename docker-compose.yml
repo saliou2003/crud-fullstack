@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  # Service 1 : application Spring Boot
+  app:
+    build: .          # construit l'image depuis le Dockerfile
+    ports:
+      - "8080:8080"   # port local:port conteneur
+    depends_on:
+      - db            # attend que la base soit prête
+    environment:      # variables d'environnement (remplace application.properties)
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/crud-springboot
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  # Service 2 : la base de données MariaDB
+  db:
+    image: mariadb:10.6   # télécharge l'image officielle MariaDB
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=crud-springboot
+    ports:
+      - "3306:3306"
