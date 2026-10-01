@@ -4,7 +4,6 @@ import com.example.demo.User;
 import com.example.demo.UserRepository;
 import com.example.demo.configuration.JwtUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value; // ✅
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +30,6 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
 
-    @Value("${app.expiration-time}")
-    private long expirationTime;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {

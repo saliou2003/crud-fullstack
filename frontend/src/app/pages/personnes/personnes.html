@@ -1,0 +1,88 @@
+
+<br>
+<mat-form-field appearance="outline">
+  <mat-label>Nom</mat-label>
+  <input matInput [(ngModel)]="newPersonne.nom">
+</mat-form-field>
+
+ <mat-form-field appearance="outline">
+  <mat-label>prenom</mat-label>
+  <input matInput [(ngModel)]="newPersonne.prenom">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Tel</mat-label>
+  <input matInput [(ngModel)]="newPersonne.tel">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Ville</mat-label>
+  <input matInput [(ngModel)]="newPersonne.ville">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="createPerson()">Ajouter</button>
+
+
+<table mat-table [dataSource]="persons">
+
+  <ng-container matColumnDef="nom">
+    <th mat-header-cell *matHeaderCellDef>Nom</th>
+    <td mat-cell *matCellDef="let p">{{ p.nom }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="prenom">
+    <th mat-header-cell *matHeaderCellDef>Prenom</th>
+    <td mat-cell *matCellDef="let p">{{ p.prenom }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="tel">
+    <th mat-header-cell *matHeaderCellDef>Tel</th>
+    <td mat-cell *matCellDef="let p">{{ p.tel }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="ville">
+    <th mat-header-cell *matHeaderCellDef>Ville</th>
+    <td mat-cell *matCellDef="let p">{{ p.ville }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let p">
+      <button mat-icon-button color="primary" (click)="selectPersonne(p)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deletePerson(p.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<br>
+<div *ngIf="selectedPersonne">
+  <mat-form-field appearance="outline">
+    <mat-label>Nom</mat-label>
+    <input matInput [(ngModel)]="selectedPersonne.nom">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Prenom</mat-label>
+    <input matInput [(ngModel)]="selectedPersonne.prenom">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Tel</mat-label>
+    <input matInput [(ngModel)]="selectedPersonne.tel">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Ville</mat-label>
+    <input matInput [(ngModel)]="selectedPersonne.ville">
+  </mat-form-field>
+  
+  <button mat-raised-button color="accent" (click)="updatePerson()">Modifier</button>
+</div>

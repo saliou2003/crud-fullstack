@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <p>Tableau de bord</p>
+</mat-toolbar>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Le nombre de personnes inscrites </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p> {{ persons.length }} </p>
+  </mat-card-content>
+</mat-card>
+
+<button mat-button routerLink="/personnes">Personnes</button>
+<button mat-button routerLink="/commandes">Commandes</button>
+<button mat-button routerLink="/produits">Produits</button>
+
+<button mat-raised-button color="warn" (click)="logout()">Déconnexion</button>

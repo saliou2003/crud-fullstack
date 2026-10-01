@@ -25,7 +25,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
-    private final JwtUtils jwtUtils;  // injecte JwtUtils directement
     private final JwtFilter jwtFilter;
 
     @Bean
@@ -44,6 +43,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(request -> {
+                    var config = new org.springframework.web.cors.CorsConfiguration();
+                    config.setAllowedOriginPatterns(java.util.List.of("*"));
+                    config.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    config.setAllowedHeaders(java.util.List.of("*"));
+                    config.setAllowCredentials(true);
+                    return config;
+                }))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated())

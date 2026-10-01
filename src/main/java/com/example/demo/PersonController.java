@@ -44,6 +44,8 @@ public class PersonController {
         Optional<Personne> personne = personRepository.findById(id);
         if(personne.isPresent()){
             Personne existedPerson = personne.get();
+            existedPerson.setNom(personInfo.getNom());
+            existedPerson.setPrenom(personInfo.getPrenom());
             existedPerson.setVille(personInfo.getVille());
             existedPerson.setTel(personInfo.getTel());
 

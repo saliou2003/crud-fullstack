@@ -1,0 +1,16 @@
+<div class="login-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Username</mat-label>
+    <input matInput [(ngModel)]="user.username" placeholder="Username">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" [(ngModel)]="user.password" placeholder="Password">
+  </mat-form-field>
+
+  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+
+  <button mat-raised-button color="primary" (click)="login()">connecter</button>
+
+</div>
